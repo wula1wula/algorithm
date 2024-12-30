@@ -1,5 +1,7 @@
 package SearchAlgorithms;
 
+import java.util.Stack;
+
 public class ArrayDFS {
     private int[][] maze;
     private int MaxIndex;
@@ -43,7 +45,24 @@ public class ArrayDFS {
     }
     //非递归DFS
     public void ArrayDfs2(int start){
-
+        int[] visited = new int[MaxIndex];
+        for(int i =0;i<MaxIndex;i++){
+            visited[i] = 0;
+        }
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+        while(!stack.isEmpty()){
+            int current = stack.pop();
+            if(visited[current] ==0){
+                visited[current] = 1;
+                System.out.print(current+" ");
+            }
+            for(int i =0;i<MaxIndex;i++){
+                if(maze[current][i]==1&&visited[i]==0){
+                    stack.push(i);
+                }
+            }
+        }
     }
     public static void main(String[] args){
         ArrayDFS dfs = new ArrayDFS(5);
@@ -51,6 +70,6 @@ public class ArrayDFS {
         dfs.addEdge(0,2);
         dfs.addEdge(1,3);
         dfs.addEdge(1,4);
-        dfs.ArrayDfs(0);
+        dfs.ArrayDfs2(0);
     }
 }
