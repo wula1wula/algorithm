@@ -1,4 +1,4 @@
-package SearchAlgorithms;
+package PathPlanning;
 import java.util.*;
 
 public class BiDirectionalDFS {
